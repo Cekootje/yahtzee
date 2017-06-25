@@ -113,7 +113,17 @@ public class Yahtzee {
     }
 
     public boolean isKleineStraat() {
+        Dobbelsteen[] gesorteerdeDobbelstenen = sorteerDobbelstenen();
+
+        System.out.println("dobbelstenen: " + Arrays.toString(dobbelstenen));
+        System.out.println("gesorteerde dobbelstenen: " + Arrays.toString(gesorteerdeDobbelstenen));
         return false;
+    }
+
+    private Dobbelsteen[] sorteerDobbelstenen() {
+        Dobbelsteen[] gesorteerdeDobbelstenen = Arrays.copyOf(dobbelstenen, dobbelstenen.length);
+        Arrays.sort(gesorteerdeDobbelstenen);
+        return gesorteerdeDobbelstenen;
     }
 
     public boolean isGroteStraat() {

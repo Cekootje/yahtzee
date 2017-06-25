@@ -40,114 +40,116 @@ public class YahtzeeTest {
 
     @Test
     public void testIsThreeOfAKind_insertYahtzee_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(2,2,2,2,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(2,2,2,2,2);
         assertTrue(yahtzee.isThreeOfAKind());
     }
 
     @Test
     public void testIsThreeOfAKind_insertCarre_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,1,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,2);
         assertTrue(yahtzee.isThreeOfAKind());
     }
 
     @Test
     public void testIsThreeOfAKind_insertThreeOfAKind_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,2,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,2,2);
         assertTrue(yahtzee.isThreeOfAKind());
     }
 
     @Test
     public void testIsThreeOfAKind_false() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,3,2,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,3,2,2);
         assertFalse(yahtzee.isThreeOfAKind());
     }
 
     @Test
     public void testIsCarre_insertYahtzee_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,1,1);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,1);
         assertTrue(yahtzee.isCarre());
     }
 
     @Test
     public void testIsCarre_insertCarre_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,1,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,2);
         assertTrue(yahtzee.isCarre());
     }
 
     @Test
     public void testIsCarre_false() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,2,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,2,2);
         assertFalse(yahtzee.isCarre());
     }
 
     @Test
     public void testIsYahtzee_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,1,1);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,1);
         assertTrue(yahtzee.isYahtzee());
     }
 
     @Test
     public void testIsYahtzee_false() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,1,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,2);
         assertFalse(yahtzee.isYahtzee());
     }
 
     @Test
     public void testIsFullHouse_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,2,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,2,2);
         assertTrue(yahtzee.isFullHouse());
     }
 
     @Test
     public void testIsFullHouse_insertYahtzee_true() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,1,1);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,1);
         assertTrue(yahtzee.isFullHouse());
     }
 
     @Test
     public void testIsFullHouse_insertCarre_false() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,1,1,1,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,2);
         assertFalse(yahtzee.isFullHouse());
     }
 
     @Test
     public void testIsFullHouse_false() throws NoSuchFieldException, IllegalAccessException {
-        initiateMockDobbelstenen(1,2,3,1,2);
-        Yahtzee yahtzee = new Yahtzee();
-        injectDobbelstenen(yahtzee);
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,2,3,1,2);
         assertFalse(yahtzee.isFullHouse());
     }
 
-    private void initiateMockDobbelstenen(int ... i) {
+    @Test
+    public void testIsKleineStraat_start_true() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(2,3,4,4,1);
+        assertTrue(yahtzee.isKleineStraat());
+    }
+
+    @Test
+    public void testIsKleineStraat_middle_true() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(2,2,3,4,5);
+        assertTrue(yahtzee.isKleineStraat());
+    }
+
+    @Test
+    public void testIsKleineStraat_end_true() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,3,4,5,6);
+        assertTrue(yahtzee.isKleineStraat());
+    }
+
+    @Test
+    public void testIsKleineStraat_false() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,3,4,5,5);
+        assertFalse(yahtzee.isKleineStraat());
+    }
+
+    private Yahtzee initiateMockDobbelstenen(int ... i) throws NoSuchFieldException, IllegalAccessException {
         when(dobbelsteen1.getWaarde()).thenReturn(i[0]);
         when(dobbelsteen2.getWaarde()).thenReturn(i[1]);
         when(dobbelsteen3.getWaarde()).thenReturn(i[2]);
         when(dobbelsteen4.getWaarde()).thenReturn(i[3]);
         when(dobbelsteen5.getWaarde()).thenReturn(i[4]);
+        Yahtzee yahtzee = new Yahtzee();
+        injectDobbelstenen(yahtzee);
+        return yahtzee;
     }
 
     private void injectDobbelstenen(Yahtzee yahtzee) throws NoSuchFieldException, IllegalAccessException {

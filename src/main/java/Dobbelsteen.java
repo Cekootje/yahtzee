@@ -5,7 +5,7 @@ import java.util.Random;
  *
  * Created by KootAJ on 22-6-2017.
  */
-public class Dobbelsteen {
+public class Dobbelsteen implements Comparable<Dobbelsteen> {
 
     private int huidigeWaarde = 0;
 
@@ -25,5 +25,10 @@ public class Dobbelsteen {
     @Override
     public String toString() {
         return "" + huidigeWaarde;
+    }
+
+    @Override
+    public int compareTo(Dobbelsteen other) {
+        return new Integer(this.getWaarde()).compareTo(other.getWaarde());
     }
 }
