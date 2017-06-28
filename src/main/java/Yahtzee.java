@@ -113,21 +113,75 @@ public class Yahtzee {
     }
 
     public boolean isKleineStraat() {
-        Dobbelsteen[] gesorteerdeDobbelstenen = sorteerDobbelstenen();
 
-        System.out.println("dobbelstenen: " + Arrays.toString(dobbelstenen));
-        System.out.println("gesorteerde dobbelstenen: " + Arrays.toString(gesorteerdeDobbelstenen));
-        return false;
-    }
+        boolean contains1 = false;
+        boolean contains2 = false;
+        boolean contains3 = false;
+        boolean contains4 = false;
+        boolean contains5 = false;
+        boolean contains6 = false;
 
-    private Dobbelsteen[] sorteerDobbelstenen() {
-        Dobbelsteen[] gesorteerdeDobbelstenen = Arrays.copyOf(dobbelstenen, dobbelstenen.length);
-        Arrays.sort(gesorteerdeDobbelstenen);
-        return gesorteerdeDobbelstenen;
+        for (Dobbelsteen dobbelsteen : dobbelstenen) {
+            switch (dobbelsteen.getWaarde()) {
+                case 1:
+                    contains1 = true;
+                    break;
+                case 2:
+                    contains2 = true;
+                    break;
+                case 3:
+                    contains3 = true;
+                    break;
+                case 4:
+                    contains4 = true;
+                    break;
+                case 5:
+                    contains5 = true;
+                    break;
+                case 6:
+                    contains6 = true;
+                    break;
+            }
+        }
+
+        return (contains1 && contains2 && contains3 && contains4) ||
+                (contains2 && contains3 && contains4 && contains5) ||
+                (contains3 && contains4 && contains5 && contains6);
     }
 
     public boolean isGroteStraat() {
-        return false;
+        boolean contains1 = false;
+        boolean contains2 = false;
+        boolean contains3 = false;
+        boolean contains4 = false;
+        boolean contains5 = false;
+        boolean contains6 = false;
+
+        for (Dobbelsteen dobbelsteen : dobbelstenen) {
+            switch (dobbelsteen.getWaarde()) {
+                case 1:
+                    contains1 = true;
+                    break;
+                case 2:
+                    contains2 = true;
+                    break;
+                case 3:
+                    contains3 = true;
+                    break;
+                case 4:
+                    contains4 = true;
+                    break;
+                case 5:
+                    contains5 = true;
+                    break;
+                case 6:
+                    contains6 = true;
+                    break;
+            }
+        }
+
+        return (contains1 && contains2 && contains3 && contains4 && contains5) ||
+                (contains2 && contains3 && contains4 && contains5 && contains6);
     }
 
     // Als dit een yahtzee is dan return true.
@@ -147,4 +201,23 @@ public class Yahtzee {
         }
         return false;
     }
+
+    public int getTotaalPerWaarde(int waarde) {
+        int totaal = 0;
+        for(Dobbelsteen dobbelsteen : dobbelstenen) {
+            if (dobbelsteen.getWaarde() == waarde) {
+                totaal += waarde;
+            }
+        }
+        return totaal;
+    }
+
+    public int getChance() {
+        int totaal = 0;
+        for(Dobbelsteen dobbelsteen : dobbelstenen) {
+            totaal += dobbelsteen.getWaarde();
+        }
+        return totaal;
+    }
+
 }

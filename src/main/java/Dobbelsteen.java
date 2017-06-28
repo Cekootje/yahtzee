@@ -13,6 +13,7 @@ public class Dobbelsteen implements Comparable<Dobbelsteen> {
         gooi();
     }
 
+
     public void gooi() {
         Random random = new Random();
         huidigeWaarde = random.nextInt(6) + 1;
@@ -31,4 +32,5 @@ public class Dobbelsteen implements Comparable<Dobbelsteen> {
     public int compareTo(Dobbelsteen other) {
         return new Integer(this.getWaarde()).compareTo(other.getWaarde());
     }
+
 }

@@ -141,6 +141,58 @@ public class YahtzeeTest {
         assertFalse(yahtzee.isKleineStraat());
     }
 
+    @Test
+    public void testIsGroteStraat_start_true() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(3,4,1,2,5);
+        assertTrue(yahtzee.isGroteStraat());
+    }
+
+    @Test
+    public void testIsGroteStraat_end_true() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(6,3,4,2,5);
+        assertTrue(yahtzee.isGroteStraat());
+    }
+
+    @Test
+    public void testIsGroteStraat_false() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(5,3,4,2,5);
+        assertFalse(yahtzee.isGroteStraat());
+    }
+
+    @Test
+    public void testGetChance_low() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,1,1,1,1);
+        assertEquals(yahtzee.getChance(), 5);
+    }
+
+    @Test
+    public void testGetChance_high() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(6,6,6,6,6);
+        assertEquals(yahtzee.getChance(), 30);
+    }
+
+    @Test
+    public void testGetTotaalPerWaarde() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(6,6,6,6,6);
+        assertEquals(yahtzee.getTotaalPerWaarde(1), 0);
+        assertEquals(yahtzee.getTotaalPerWaarde(2), 0);
+        assertEquals(yahtzee.getTotaalPerWaarde(3), 0);
+        assertEquals(yahtzee.getTotaalPerWaarde(4), 0);
+        assertEquals(yahtzee.getTotaalPerWaarde(5), 0);
+        assertEquals(yahtzee.getTotaalPerWaarde(6), 30);
+    }
+
+    @Test
+    public void testGetTotaalPerWaarde_doorElkaar() throws NoSuchFieldException, IllegalAccessException {
+        Yahtzee yahtzee = initiateMockDobbelstenen(1,2,6,3,6);
+        assertEquals(yahtzee.getTotaalPerWaarde(1), 1);
+        assertEquals(yahtzee.getTotaalPerWaarde(2), 2);
+        assertEquals(yahtzee.getTotaalPerWaarde(3), 3);
+        assertEquals(yahtzee.getTotaalPerWaarde(4), 0);
+        assertEquals(yahtzee.getTotaalPerWaarde(5), 0);
+        assertEquals(yahtzee.getTotaalPerWaarde(6), 12);
+    }
+
     private Yahtzee initiateMockDobbelstenen(int ... i) throws NoSuchFieldException, IllegalAccessException {
         when(dobbelsteen1.getWaarde()).thenReturn(i[0]);
         when(dobbelsteen2.getWaarde()).thenReturn(i[1]);
