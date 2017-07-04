@@ -9,13 +9,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Main main = new Main();
 
         checkArgs(args);
-        ScreenBuilder.buildScreen(args);
+
+        Speler[] spelers = SpelerBuilder.buildSpelers(args);
+        ScreenBuilder.buildScreen(spelers);
 
         Scanner scanner = new Scanner(System.in);
         String userInput = "exit";
+
         while (!userInput.equals("exit")) {
             System.out.println("Waiting for input: ");
             userInput = scanner.nextLine();
@@ -28,9 +30,6 @@ public class Main {
         System.out.println();
         System.out.println("Bye!");
     }
-
-
-
 
     /**
      * Args moet gevuld zijn met minimaal 1 parameter. Als dat niet zo is, dan een println met uitleg.
@@ -90,6 +89,5 @@ public class Main {
         System.out.println("Aantal full houses in de tussentijd: " + fullHousesThrown);
         System.out.println("Aantal pure three of a kinds in de tussentijd: " + threeOfAKindsThrown);
         System.out.println("Aantal pure carrees in de tussentijd: " + carresThrown);
-
     }
 }

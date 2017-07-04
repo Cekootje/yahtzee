@@ -5,41 +5,41 @@ import constants.Template;
  */
 public class ScreenBuilder {
 
-    public static void buildScreen(String[] args) {
-        int columnWidth = calcIdealColumnWidth(args);
-        buildHeader(args, columnWidth);
-        buildPlayRows(args, columnWidth);
+    public static void buildScreen(Speler[] spelers) {
+        int columnWidth = calcIdealColumnWidth(spelers);
+        buildHeader(spelers, columnWidth);
+        buildPlayRows(spelers, columnWidth);
     }
 
-    private static int calcIdealColumnWidth(String[] args) {
+    private static int calcIdealColumnWidth(Speler[] spelers) {
         int longestArgLength = 3; // Omdat het getal 100 drie lang is. Zo krijg je altijd kolommen waar dat in past.
-        for(String arg : args) {
-            if (arg.length() > longestArgLength) {
-                longestArgLength = arg.length();
+        for(Speler speler : spelers) {
+            if (speler.getNaam().length() > longestArgLength) {
+                longestArgLength = speler.getNaam().length();
             }
         }
         return longestArgLength;
     }
 
-    private static void buildHeader(String[] args, int columnWidth) {
+    private static void buildHeader(Speler[] spelers, int columnWidth) {
         // HEADER
         String firstRow = Template.ROW_NAMES_START;
-        for(String arg : args) {
-            String paddedName = Template.padLeft(arg, columnWidth);
+        for(Speler speler : spelers) {
+            String paddedName = Template.padLeft(speler.getNaam(), columnWidth);
             firstRow += String.format(Template.ROW_NAMES, paddedName);
         }
         firstRow += Template.ROW_NAMES_END;
         System.out.println(firstRow);
 
-        drawLine(args, columnWidth);
+        drawLine(spelers, columnWidth);
     }
 
-    private static void drawLine(String[] args, int columnWidth) {
+    private static void drawLine(Speler[] spelers, int columnWidth) {
         for(int i = 0; i < Template.IDEAL_FIRST_COL_WIDTH; i++) {
             System.out.print("-");
         }
 
-        for(int i = 0; i < args.length; i++) {
+        for(int i = 0; i < spelers.length; i++) {
             System.out.print("+");
             for (int j = 0; j < columnWidth+2; j++) {
                 System.out.print("-");
@@ -48,15 +48,15 @@ public class ScreenBuilder {
         System.out.println("+");
     }
 
-    private static void buildPlayRows(String[] args, int columnWidth) {
+    private static void buildPlayRows(Speler[] spelers, int columnWidth) {
         for(String playRow : Template.getPlayRows()) {
-            for(String arg : args) {
+            for(Speler speler : spelers) {
                 String paddedName = Template.padLeft("", columnWidth);
                 playRow += String.format(Template.ROW_NAMES, paddedName);
             }
             playRow += Template.ROW_NAMES_END;
             System.out.println(playRow);
-            drawLine(args, columnWidth);
+            drawLine(spelers, columnWidth);
         }
     }
 }
